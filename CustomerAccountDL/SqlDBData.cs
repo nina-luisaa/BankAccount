@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace CustomerAccountDL
     public class SqlDbData
     {
 
-        string connectionString = "Data Source =LAPTOP-VSVG94EM\\SQLEXPRESS; Initial Catalog = AccountManagement; Integrated Security = True;";
+        string connectionString = "Data Source =LAPTOP-VSVG94EM\\SQLEXPRESS; Initial Catalog = BankAccount; Integrated Security = True;";
 
 
         SqlConnection sqlConnection;
@@ -40,7 +41,7 @@ namespace CustomerAccountDL
                 User readUser = new User();
                 readUser.accountnumber = accountnumber;
                 readUser.pin = pin;
-        
+
 
                 users.Add(readUser);
             }
