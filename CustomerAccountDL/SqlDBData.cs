@@ -12,7 +12,7 @@ namespace CustomerAccountDL
     public class SqlDbData
     {
 
-        string connectionString = "Data Source =LAPTOP-VSVG94EM\\SQLEXPRESS; Initial Catalog = BankAccount; Integrated Security = True;";
+        string connectionString = "Data Source =LAPTOP-VESUE4DG\\SQLEXPRESS01; Initial Catalog = BankAccount; Integrated Security = True;";
 
 
         SqlConnection sqlConnection;
@@ -24,7 +24,9 @@ namespace CustomerAccountDL
 
         public List<User> GetUsers()
         {
-            string selectStatement = "SELECT accountnumber, pin, status FROM users";
+            string selectStatement = "SELECT accountnumber, pin FROM [Users]";
+            ;
+
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, sqlConnection);
 
@@ -36,13 +38,11 @@ namespace CustomerAccountDL
             while (reader.Read())
             {
                 string accountnumber = reader["accountnumber"].ToString();
-                string pin = reader["pin"].ToString();
+                string pin = reader["Pin"].ToString();
 
                 User readUser = new User();
                 readUser.accountnumber = accountnumber;
                 readUser.pin = pin;
-
-
                 users.Add(readUser);
             }
 
@@ -55,7 +55,7 @@ namespace CustomerAccountDL
         {
             int success;
 
-            string insertStatement = "INSERT INTO users VALUES (@accountnumber, @pin)";
+            string insertStatement = "INSERT INTO Users VALUES (@accountnumber, @pin)";
 
             SqlCommand insertCommand = new SqlCommand(insertStatement, sqlConnection);
 
@@ -72,9 +72,10 @@ namespace CustomerAccountDL
 
         public int UpdateUser(string accountnumber, string pin)
         {
+            ;
             int success;
 
-            string updateStatement = $"UPDATE users SET pin = @Pin WHERE accountnumber = @Accountnumber";
+            string updateStatement = $"UPDATE Users SET Pin = @Pin WHERE accountnumber = @accountnumber";
             SqlCommand updateCommand = new SqlCommand(updateStatement, sqlConnection);
             sqlConnection.Open();
 
@@ -90,19 +91,20 @@ namespace CustomerAccountDL
 
         public int DeleteUser(string accountnumber)
         {
-            int success;
+            int success = 0;
 
-            string deleteStatement = $"DELETE FROM users WHERE accountnumber = @accountnumber";
-            SqlCommand deleteCommand = new SqlCommand(deleteStatement, sqlConnection);
-            sqlConnection.Open();
+            string deleteStatement = "DELETE FROM Users WHERE accountnumber = @accountnumber";
+            using (SqlCommand deleteCommand = new SqlCommand(deleteStatement, sqlConnection))
+            {
+                deleteCommand.Parameters.AddWithValue("@accountnumber", accountnumber);
 
-            deleteCommand.Parameters.AddWithValue("@accountnumber", accountnumber);
-
-            success = deleteCommand.ExecuteNonQuery();
-
-            sqlConnection.Close();
+                sqlConnection.Open();
+                success = deleteCommand.ExecuteNonQuery();
+                sqlConnection.Close();
+            }
 
             return success;
         }
+
     }
 }

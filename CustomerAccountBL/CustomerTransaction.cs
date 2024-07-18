@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BankAccountModel;
-
-
-
 using CustomerAccountDL;
 
 
@@ -14,14 +11,14 @@ namespace CustomerAccountBL
 {
     public class CustomerTransaction
     {
-        private CustomerValidation validationServices = new CustomerValidation();
-        private UserData userData = new UserData();
+        CostumerValidation validationServices = new CostumerValidation();
+        CustomerData userData = new CustomerData();
 
         public bool CreateUser(User user)
         {
             bool result = false;
 
-            if (!validationServices.CheckIfUserNameExists(user.accountnumber))
+            if (validationServices.CheckIfaccountnumberExists(user.accountnumber))
             {
                 result = userData.AddUser(user) > 0;
             }
@@ -40,9 +37,9 @@ namespace CustomerAccountBL
         {
             bool result = false;
 
-            if (validationServices.CheckIfUserNameExists(user.accountnumber))
+            if (validationServices.CheckIfaccountnumberExists(user.accountnumber))
             {
-                result = userData.UpdateUser(user) > 0;
+                result = userData.UpdateCustomer(user) > 0;
             }
 
             return result;
@@ -59,7 +56,7 @@ namespace CustomerAccountBL
         {
             bool result = false;
 
-            if (validationServices.CheckIfUserNameExists(user.accountnumber))
+            if (validationServices.CheckIfaccountnumberExists(user.accountnumber))
             {
                 result = userData.DeleteUser(user) > 0;
             }
@@ -74,35 +71,7 @@ namespace CustomerAccountBL
             return DeleteUser(user);
         }
     }
-
-
-    public class CustomerValidation
-    {
-        public bool CheckIfUserNameExists(string accountnumber)
-        {
-
-            return false;
-        }
-    }
-
-    public class UserData
-    {
-        public int AddUser(User user)
-        {
-
-            return 1;
-        }
-
-        public int UpdateUser(User user)
-        {
-
-            return 1;
-        }
-
-        public int DeleteUser(User user)
-        {
-
-            return 1;
-        }
-    }
 }
+
+
+   
