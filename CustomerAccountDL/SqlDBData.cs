@@ -11,9 +11,8 @@ namespace CustomerAccountDL
 {
     public class SqlDbData
     {
-
-        string connectionString = "Data Source =LAPTOP-VESUE4DG\\SQLEXPRESS01; Initial Catalog = BankAccount; Integrated Security = True;";
-
+        string connectionString
+        = "Server = tcp:20.189.78.204,1433; Database = BankAccount; User Id = sa; Password = LuisaNina123!";
 
         SqlConnection sqlConnection;
 

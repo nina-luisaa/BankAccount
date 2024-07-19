@@ -32,7 +32,7 @@ namespace CustomerAccountDL
         {
             return sqlData.AddUser(user.accountnumber, user.pin);
         }
-        public int UpdateCustomer(User user)
+        public int UpdateUser(User user)
         {
             return sqlData.UpdateUser(user.accountnumber, user.pin);
 

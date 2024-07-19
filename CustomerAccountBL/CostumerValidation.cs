@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankAccountModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace CustomerAccountBL
     public class CostumerValidation
     {
         CustomerGetServices getservices = new CustomerGetServices();
+
 
         public bool CheckIfaccountnumberExists(string accountnumber)
         {

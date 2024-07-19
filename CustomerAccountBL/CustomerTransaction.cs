@@ -39,7 +39,7 @@ namespace CustomerAccountBL
 
             if (validationServices.CheckIfaccountnumberExists(user.accountnumber))
             {
-                result = userData.UpdateCustomer(user) > 0;
+                result = userData.UpdateUser(user) > 0;
             }
 
             return result;
@@ -74,4 +74,3 @@ namespace CustomerAccountBL
 }
 
 
-   
