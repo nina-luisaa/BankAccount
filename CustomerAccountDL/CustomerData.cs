@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using BankAccountModel;
+using MimeKit;
+using MailKit.Net.Smtp;
+
 
 namespace CustomerAccountDL
 {
-    public  class CustomerData
+    public class CustomerData
     {
         List<User> users;
         SqlDbData sqlData;
@@ -30,12 +33,13 @@ namespace CustomerAccountDL
         }
         public int AddUser(User user)
         {
-            return sqlData.AddUser(user.accountnumber, user.pin);
+            return sqlData.AddUser(user.accountnumber, user.pin, user.balance);
         }
         public int UpdateUser(User user)
         {
-            return sqlData.UpdateUser(user.accountnumber, user.pin);
-
+            return sqlData.UpdateUser(user.accountnumber, user.pin, user.balance);
         }
     }
 }
+
+   

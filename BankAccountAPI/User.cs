@@ -7,5 +7,6 @@ namespace BankAccountAPI
 
         public string pin { get; set; }
 
+        public string balance { get; set; }
     }
 }

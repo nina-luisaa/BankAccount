@@ -1,73 +1,73 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BankAccountModel;
 using CustomerAccountDL;
-
 
 namespace CustomerAccountBL
 {
     public class CustomerTransaction
     {
-        CostumerValidation validationServices = new CostumerValidation();
-        CustomerData userData = new CustomerData();
+        private readonly CustomerValidation _validationServices;
+        private readonly CustomerData _userData;
 
-        public bool CreateUser(User user)
+        public CustomerTransaction()
         {
-            bool result = false;
-
-            if (validationServices.CheckIfaccountnumberExists(user.accountnumber))
-            {
-                result = userData.AddUser(user) > 0;
-            }
-
-            return result;
+            _validationServices = new CustomerValidation();
+            _userData = new CustomerData();
         }
 
-        public bool CreateUser(string accountnumber, string pin)
+       
+        public bool CreateUser(User user)
         {
-            User user = new User { accountnumber = accountnumber, pin = pin };
+           
+            if (!_validationServices.CheckIfAccountNumberExists(user.accountnumber))
+            {
+                
+                return _userData.AddUser(user) > 0;
+            }
+            return false;
+        }
 
+       
+        public bool CreateUser(string accountnumber, string pin, string balance)
+        {
+            User user = new User { accountnumber = accountnumber, pin = pin, balance = balance };
             return CreateUser(user);
         }
 
+       
         public bool UpdateUser(User user)
         {
-            bool result = false;
-
-            if (validationServices.CheckIfaccountnumberExists(user.accountnumber))
+            
+            if (_validationServices.CheckIfAccountNumberExists(user.accountnumber))
             {
-                result = userData.UpdateUser(user) > 0;
+                return _userData.UpdateUser(user) > 0;
             }
-
-            return result;
+            return false;
         }
 
-        public bool UpdateUser(string accountnumber, string pin)
+    
+        public bool UpdateUser(string accountnumber, string pin, string  balance)
         {
-            User user = new User { accountnumber = accountnumber, pin = pin };
-
+            User user = new User { accountnumber = accountnumber, pin = pin, balance = balance };
             return UpdateUser(user);
         }
 
+       
         public bool DeleteUser(User user)
         {
-            bool result = false;
-
-            if (validationServices.CheckIfaccountnumberExists(user.accountnumber))
+            
+            if (_validationServices.CheckIfAccountNumberExists(user.accountnumber))
             {
-                result = userData.DeleteUser(user) > 0;
+              
+                return _userData.DeleteUser(user) > 0;
             }
-
-            return result;
+            return false;
         }
 
-        public bool DeleteUser(string accountnumber, string pin)
+        
+        public bool DeleteUser(string accountnumber, string pin, string balance)
         {
-            User user = new User { accountnumber = accountnumber, pin = pin };
-
+            User user = new User { accountnumber = accountnumber, pin = pin, balance = balance };
             return DeleteUser(user);
         }
     }

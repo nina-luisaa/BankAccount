@@ -27,7 +27,7 @@ namespace BankAccountAPI.Controllers
 
             foreach (var item in activeusers)
             {
-                users.Add(new BankAccountAPI.User { accountnumber = item.accountnumber, pin = item.pin });
+                users.Add(new BankAccountAPI.User { accountnumber = item.accountnumber, pin = item.pin, balance = item.balance });
             }
 
             return users;
@@ -36,7 +36,7 @@ namespace BankAccountAPI.Controllers
         [HttpPost]
         public JsonResult AddUser(User request)
         {
-            var result = _CustomerTransaction.CreateUser(request.accountnumber, request.pin);
+            var result = _CustomerTransaction.CreateUser(request.accountnumber, request.pin, request.balance);
 
             return new JsonResult(result);
         }
@@ -44,7 +44,7 @@ namespace BankAccountAPI.Controllers
         [HttpPatch]
         public JsonResult UpdateUser(User request)
         {
-            var result = _CustomerTransaction.UpdateUser(request.accountnumber, request.pin);
+            var result = _CustomerTransaction.UpdateUser(request.accountnumber, request.pin, request.balance);
 
             return new JsonResult(result);
         }
@@ -52,7 +52,7 @@ namespace BankAccountAPI.Controllers
             [HttpDelete]
             public JsonResult DeleteUser(User request)
             {
-                var result = _CustomerTransaction.DeleteUser(request.accountnumber, request.pin);
+            var result = _CustomerTransaction.DeleteUser(request.accountnumber, request.pin, request.balance);
 
                 return new JsonResult(result);
             }

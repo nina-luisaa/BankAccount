@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerAccountBL", "Custom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{CB48D71C-C907-4F03-8A98-DD1CC6807B53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountAPI", "BankAccountAPI\BankAccountAPI.csproj", "{5033081A-AD83-4A85-8D88-A47D85DD8993}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccountAPI", "BankAccountAPI\BankAccountAPI.csproj", "{5033081A-AD83-4A85-8D88-A47D85DD8993}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

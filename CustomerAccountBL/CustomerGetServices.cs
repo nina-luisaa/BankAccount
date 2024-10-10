@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using CustomerAccountDL;
 using BankAccountModel;
 
@@ -11,33 +9,37 @@ namespace CustomerAccountBL
         public List<User> GetAllUser()
         {
             CustomerData userData = new CustomerData();
-         
             return userData.GetUsers();
         }
+
         public User GetUser(string accountnumber)
         {
-            User FoundCostumer = new User();
+            User foundCustomer = null;
 
             foreach (var user in GetAllUser())
             {
                 if (user.accountnumber == accountnumber)
                 {
-                    FoundCostumer = user;
+                    foundCustomer = user;
+                    break;
                 }
             }
-            return FoundCostumer;
+            return foundCustomer;
         }
+
         public User GetUser(string accountnumber, string pin)
         {
-            User FoundCostumer = new User();
+            User foundCustomer = null;
+
             foreach (var user in GetAllUser())
             {
                 if (user.accountnumber == accountnumber && user.pin == pin)
                 {
-                    FoundCostumer = user;
-                }
+                    foundCustomer = user;
+                    break;
+                } 
             }
-            return FoundCostumer;
+            return foundCustomer;
         }
     }
 }
