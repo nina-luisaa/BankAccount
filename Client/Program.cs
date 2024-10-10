@@ -4,7 +4,7 @@ using BankAccountModel;
 using CustomerAccountBL;
 using MailKit.Net.Smtp;
 using MimeKit;
-
+//
 namespace new_email_tool
 {
     internal class Program
